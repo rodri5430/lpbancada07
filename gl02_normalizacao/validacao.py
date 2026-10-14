@@ -90,12 +90,13 @@ def normalizar_observacao(mensagem: Mapping[str, object]) -> dict[str, object]:
     #quality="missing" apenas para None
     #"Valid" apenas para numeros aceites
     #Rejeitar restantes incoerencias
-
+    
+    quality = resultado["quality"] #add strict check for test_grupo.py check
     if resultado["value"] is None:
-        if resultado["quality"] != "missing":
+        if quality != "missing":
             raise ErroValidacao("quality", "incoerente")
     else:
-        if resultado["quality"] != "valid":
+        if quality != "valid":
             raise ErroValidacao("quality", "incoerente")
     
     #S7

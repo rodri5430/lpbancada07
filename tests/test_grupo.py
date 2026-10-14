@@ -11,8 +11,6 @@ from gl02_normalizacao.validacao import normalizar_valor, normalizar_observacao
 from gl02_normalizacao.app import processar_linhas
 from tests.test_contrato import mensagem
 
-from math import isnan
-
 RAIZ = Path(__file__).resolve().parents[1]
 
 class TestGrupo(unittest.TestCase):
@@ -56,7 +54,7 @@ class TestGrupo(unittest.TestCase):
         self.assertEqual(ctx.exception.campo, "quality")
         self.assertEqual(ctx.exception.motivo, "incoerente")
 
-        obs2 = mensagem(valot=0, quality="missing")
+        obs2 = mensagem(valor=0, quality="missing")
         with self.assertRaises(ErroValidacao) as ctx:
             normalizar_valor(obs2)
         self.assertEqual(ctx.exception.campo, "quality")

@@ -4,6 +4,7 @@ Base conceptual: MT02, EX03. Consultar CONTRATO_GL02.md antes de alterar.
 O normalizador verifica apenas quantity, unit, value e quality.
 """
 from collections.abc import Mapping
+import math
 from math import isfinite
 from math import isnan
 

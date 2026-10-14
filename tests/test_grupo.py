@@ -11,6 +11,8 @@ from gl02_normalizacao.validacao import normalizar_valor, normalizar_observacao
 from gl02_normalizacao.app import processar_linhas
 from tests.test_contrato import mensagem
 
+from math import isnan
+
 RAIZ = Path(__file__).resolve().parents[1]
 
 class TestGrupo(unittest.TestCase):

@@ -79,7 +79,7 @@ def normalizar_observacao(mensagem: Mapping[str, object]) -> dict[str, object]:
     #S5 
     #quantity="indice_demo" e unit="u_demo" exclusivamente neste exemplo sintetico ?????? FUCK DOES THAT MEAN ???????
     #https://pt.pinterest.com/pin/1041598220082430653/  <-  literally me rn
-    if reultado["quantity"] != "indice_demo":
+    if resultado["quantity"] != "indice_demo":
         raise ErroValidacao("quantity", "grandeza_nao_admitida")
 
     if resultado["unit"] != "u_demo":

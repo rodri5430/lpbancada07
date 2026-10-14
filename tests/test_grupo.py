@@ -16,7 +16,17 @@ RAIZ = Path(__file__).resolve().parents[1]
 class TestGrupo(unittest.TestCase):
     def test_negativos_e_tipo(self):
         """G3.1: -4 e -2.5 preservados, incluindo o tipo numérico."""
-        self.fail("G3.1: completar asserções para negativos e tipos")
+        saida_int = normalizar_valor(-4)
+        #confirm if its the same
+        self.assertEqual(saida_int, -4)
+        #confirm if its the same data type
+        self.assertIs(type(saida_int), int)
+        
+        saida_float = normalizar_valor(-2.5)
+        #confirm if its the same
+        self.assertEqual(saida_float, -2.5)
+        #confirm if its the same data type
+        self.assertIs(type(saida_float), float)
 
     def test_booleanos(self):
         """G3.2: True e False rejeitados; verificar campo e motivo."""

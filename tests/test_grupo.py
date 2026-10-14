@@ -64,7 +64,20 @@ class TestGrupo(unittest.TestCase):
 
     def test_copia_e_preservacao(self):
         """G3.5: entrada intacta, saída distinta, metadados preservados."""
-        self.fail("G3.5: completar teste de ausência de mutação")
+        original = mensagem(valor=10, qualidade="valid")
+        original["outro_campo"] = "dado_aleatorio"
+        copia_original = deepcopy(original)
+
+        saida = normalizar_observacao(original)
+
+        # A entrada não pode ser mutada
+        self.assertEqual(original, copia_original)
+        # A saída deve ser um objeto dicionário diferente (cópia superficial)
+        self.assertIsNot(saida, original)
+        # Campos remanescentes/metadados devem ser preservados sem alteração
+        self.assertIn("outro_campo", saida)
+        self.assertEqual(saida["outro_campo"], "dado_aleatorio")
+        #self.fail("G3.5: completar teste de ausência de mutação")
 
     def test_lote_e_repeticao(self):
         """G3.6: 4 aceites/6 rejeitadas; zero final é aceite e repetido."""

@@ -7,7 +7,7 @@ from collections.abc import Mapping
 from math import isfinite
 from math import isnan
 
-from .erros import ErroValidacao
+from erros import ErroValidacao
 
 Valor = int | float | None
 

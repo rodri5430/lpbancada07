@@ -30,15 +30,37 @@ class TestGrupo(unittest.TestCase):
 
     def test_booleanos(self):
         """G3.2: True e False rejeitados; verificar campo e motivo."""
-        self.fail("G3.2: completar asserções para booleanos")
+        for val in (True, False):
+            with self.assertRaises(ErroValidacao) as ctx:
+                normalizar_valor(val)
+            self.assertEqual(ctx.exception.campo, "value")
+            self.assertEqual(ctx.exception.motivo, "tipo_invalido")
+        #self.fail("G3.2: completar asserções para booleanos")
 
     def test_nao_finitos(self):
         """G3.3: float('nan'), float('inf') e -float('inf') rejeitados."""
-        self.fail("G3.3: completar asserções para não finitos")
+        for val in (float('nan'), float('inf'), -float('inf')):
+            with self.assertRaises(ErroValidacao) as ctx:
+                normalizar_valor(val)
+            self.assertEqual(ctx.exception.campo, "value")
+            self.assertEqual(ctx.exception.motivo, "nao_finito")
+        #self.fail("G3.3: completar asserções para não finitos")
 
     def test_coerencia_quality(self):
         """G3.4: (None, valid) e (0, missing) rejeitados, sem autocorreção."""
-        self.fail("G3.4: completar asserções para quality")
+        obs1 = mensagem(valor=None, qualidade="valid")
+        with self.assertRaises(ErroValidacao) as ctx:
+            normalizar_valor(obs1)
+        self.assertEqual(ctx.exception.campo, "quality")
+        self.assertEqual(ctx.exception.motivo, "incoerente")
+
+        obs2 = mensagem(valot=0, quality="missing")
+        with self.assertRaises(ErroValidacao) as ctx:
+            normalizar_valor(obs2)
+        self.assertEqual(ctx.exception.campo, "quality")
+        self.assertEqual(ctx.exception.campo, "missing")
+
+        #self.fail("G3.4: completar asserções para quality")
 
     def test_copia_e_preservacao(self):
         """G3.5: entrada intacta, saída distinta, metadados preservados."""

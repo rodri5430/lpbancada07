@@ -20,18 +20,18 @@ def normalizar_valor(valor: object) -> Valor:
     #G2a: exclusao de bool/tipos invalidos
     #command isinstance from https://www.geeksforgeeks.org/python/python-isinstance-method/
     if isinstance(valor, bool):
-        raise ErroValidacao("value", "Rejeitado, o valor nao pode ser do tipo Booleano")
+        raise ErroValidacao("value", "tipo_invalido")
 
     if isinstance(valor, float):
         #check if value is infinit, if it is dont concerve it
         #ass: Flower
         if not isfinite(valor):
-            raise ErroValidacao("value" ,"Rejeitado, valores Float infinitos nao sao permitido")
+            raise ErroValidacao("value" ,"nao_finito")
         #took from https://stackoverflow.com/questions/944700/how-to-check-for-nan-values
         #and https://docs.python.org/3/library/math.html#math.isnan
         #ass: Flower
         if math.isnan(valor):
-            raise ErroValidacao("value", "Rejeitado, valores Nan nao sao permitidos")
+            raise ErroValidacao("value", "tipo_invalido")
         #value assumed as valid ass: Flower
         return valor
 
@@ -46,10 +46,9 @@ def normalizar_valor(valor: object) -> Valor:
     #Yes Sir I wont do any of that :3 ass: Flower
     
     #IDK HOW THE FUCK IT WOULD REACH HERE BUT IT SURE IT AINT VALID IF IT DID
-    raise ErroValidacao("value" ,"Rejeitado, valor invalido")
+    raise ErroValidacao("value" ,"tipo_invalido")
 
     #I mean I dont know if this raise is necessary or was just a thing left here for implementation purposses.... ._. ass: Flower
-    raise NotImplementedError("G2a: implementar normalizar_valor")
 
 
 def normalizar_observacao(mensagem: Mapping[str, object]) -> dict[str, object]:
@@ -62,7 +61,7 @@ def normalizar_observacao(mensagem: Mapping[str, object]) -> dict[str, object]:
 
     if not isinstance(mensagem, Mapping):
         #I mean ig this is checked when the func is called but anyway, just delete this if I'm wrong ._.
-        raise ErroValidacao("mensagem" "Rejeitado, a mensagem devera ser um Mapeamento")
+        raise ErroValidacao("mensagem", "formato_invalido")
 
     resultado = dict(mensagem)
 
@@ -72,7 +71,7 @@ def normalizar_observacao(mensagem: Mapping[str, object]) -> dict[str, object]:
         #verify each section of resultado to cheack if its respective campo is there
         if campo not in resultado:
             #Erm this wont show the entered value so to not break S8 rule
-            raise ErroValidacao(campo, f"Rejeitado, campo {campo} em falta")
+            raise ErroValidacao(campo, "campo_em_falta")
     
     #verify if section "value" is valid, obey S1 S2 and S3 (Dont know if its applicable here too but fuck it Im too tired to think about this rn it 2am, just remove it if not)
     resultado["value"] = normalizar_valor(resultado["value"])
@@ -81,10 +80,10 @@ def normalizar_observacao(mensagem: Mapping[str, object]) -> dict[str, object]:
     #quantity="indice_demo" e unit="u_demo" exclusivamente neste exemplo sintetico ?????? FUCK DOES THAT MEAN ???????
     #https://pt.pinterest.com/pin/1041598220082430653/  <-  literally me rn
     if reultado["quantity"] != "indice_demo":
-        raise ErroValidacao("quantity", "Rejeitado, valor de qualidade nao admitido")
+        raise ErroValidacao("quantity", "grandeza_nao_admitida")
 
     if resultado["unit"] != "u_demo":
-        raise ErroValidacao("unit" ,"Rejeitado, valor de unit nao admitido")
+        raise ErroValidacao("unit" ,"unidade_nao_admitida")
 
     #S6
     #quality="missing" apenas para None
@@ -93,10 +92,10 @@ def normalizar_observacao(mensagem: Mapping[str, object]) -> dict[str, object]:
 
     if resultado["value"] is None:
         if resultado["quality"] != "missing":
-            raise ErroValidacao("quality", "Rejeitado, valor de quality incoerente para valor value None")
+            raise ErroValidacao("quality", "incoerente")
     else:
         if resultado["quality"] != "valid":
-            raise ErroValidacao("quality", "Rejeitado, valor de quality incoerente para valor value diferente que None")
+            raise ErroValidacao("quality", "incoerente")
     
     #S7
     #devolver uma copia superficial aka resultado sem alterar a entrada

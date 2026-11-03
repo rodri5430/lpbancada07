@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Página-1" id="3OUupKXQtkiCei2uAXDq">
+    <mxGraphModel dx="1690" dy="1717" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="u8hNSg78mbM3qn00_Jme-3" edge="1" parent="1" source="u8hNSg78mbM3qn00_Jme-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;" target="u8hNSg78mbM3qn00_Jme-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="Sensor HKT IAQ-900 EU868" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="-380" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-6" edge="1" parent="1" source="u8hNSg78mbM3qn00_Jme-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="u8hNSg78mbM3qn00_Jme-5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="Gateway Dragino LG308N&amp;nbsp;" vertex="1">
+          <mxGeometry height="60" width="120" x="290" y="-380" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="LoR&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;aWan&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="220" y="-390" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-8" edge="1" parent="1" source="u8hNSg78mbM3qn00_Jme-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="u8hNSg78mbM3qn00_Jme-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="The Things Network" vertex="1">
+          <mxGeometry height="60" width="120" x="443" y="-380" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-16" edge="1" parent="1" source="u8hNSg78mbM3qn00_Jme-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="u8hNSg78mbM3qn00_Jme-15" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="Consumidor Python" vertex="1">
+          <mxGeometry height="60" width="120" x="670" y="-380" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="MQTT" vertex="1">
+          <mxGeometry height="35" width="60" x="583" y="-390" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-18" edge="1" parent="1" source="u8hNSg78mbM3qn00_Jme-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="u8hNSg78mbM3qn00_Jme-17" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-20" edge="1" parent="1" source="u8hNSg78mbM3qn00_Jme-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="u8hNSg78mbM3qn00_Jme-19" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="Validação / Processamento" vertex="1">
+          <mxGeometry height="60" width="120" x="860" y="-380" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-17" parent="1" style="whiteSpace=wrap;html=1;rounded=1;roundedPerimeter=1;" value="Persistência" vertex="1">
+          <mxGeometry height="60" width="120" x="1040" y="-380" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="API" vertex="1">
+          <mxGeometry height="60" width="120" x="860" y="-200" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="IP" vertex="1">
+          <mxGeometry height="20" width="40" x="805" y="-375" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="IP" vertex="1">
+          <mxGeometry height="20" width="40" x="990" y="-375" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-25" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="190" width="540" x="655" y="-445" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Raspberry Pi" vertex="1">
+          <mxGeometry height="30" width="120" x="660" y="-470" as="geometry" />
+        </mxCell>
+        <mxCell id="u8hNSg78mbM3qn00_Jme-28" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Diagrama de Contexto do Projeto Integrador&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="529" x="394" y="-529" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

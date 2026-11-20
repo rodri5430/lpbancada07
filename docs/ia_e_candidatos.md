@@ -23,11 +23,11 @@ Resultado agregado do comparador: A conforme em 1/10 casos; B conforme em 8/10. 
 
 ## Utilização de IA no R04 (consumidor MQTT)
 
-- Ferramenta/modelo: Claude.
-- Finalidade: preparação do módulo `r04_mqtt/` (consumidor MQTT do The Things Stack), análise do Payload Formatter e orientação de alguns passos para a correta execução no Raspberry Pi.
-- Ficheiros influenciados: `r04_mqtt/` (código em `tests/`, `docs/`) e `docs/EVIDENCIA_R04.md`.
-- Contribuições aceites: consumidor MQTT com TLS, validação de tópico e identificadores, registo JSONL sem credenciais, testes sintéticos (15), análise das dúvidas no formatter.
-- Contribuições não aplicadas: não foi alterado nem reescrito o formatter do docente; apenas foram feitas alterações ao codigo desenvolvido pelos estudantes;  o consumidor não descodifica, não valida valores do sensor e não elimina mensagens repetidas.
-- Evidência de revisão e teste: execução real na bancada 07 em 17/11/2026 (`docs/EVIDENCIA_R04.md`); testes `PYTHONPATH=src python -m unittest discover -s tests` em `r04_mqtt/`.
+- Ferramenta/modelo e data: Claude (Anthropic), 17 a 20/11/2026.
+- Finalidade: apoio à documentação do módulo `r04_mqtt/`, análise do Payload Formatter, redação de `docs/EVIDENCIA_R04.md` e dos READMEs, orientação da execução no Raspberry Pi e limpeza do repositório para o M1. O código do consumidor MQTT (`r04_mqtt/src/` e testes) foi escrito pelo grupo.
+- Ficheiros influenciados: `README.md`, `r04_mqtt/README.md`, `r04_mqtt/docs/`, `docs/EVIDENCIA_R04.md` e este registo.
+- Contribuições aceites: texto da documentação e da evidência, análise das dúvidas no formatter, estrutura do README e da limpeza.
+- Contribuições não aplicadas: não foi alterado nem reescrito o formatter do docente.
+- Evidência de revisão e teste: execução real na bancada 07 em 17/11/2026 (`docs/EVIDENCIA_R04.md`); testes `PYTHONPATH=src python -m unittest discover -s tests` em `r04_mqtt/`. Revisão por outro elemento: [pendente ou NOME e PR].
 - Dados enviados à ferramenta: o enunciado, a estrutura do repositório e excertos de uplinks (identificadores e bytes de payload). Nenhuma credencial foi partilhada.
 

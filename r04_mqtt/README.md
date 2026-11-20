@@ -1,20 +1,12 @@
 # R04 — Consumidor MQTT do The Things Stack
 
-> **Estado:** implementação preparada e testada apenas com mensagens sintéticas. A ligação ao broker e a receção do sensor físico ainda têm de ser demonstradas no ambiente autorizado.
+> **Estado:** receção real demonstrada na bancada 07 (Raspberry Pi `lp-b07`, 2026-11-17), com uplinks recebidos por MQTT e `decoded_payload` produzido pelo formatter do TTS. Ver `docs/EVIDENCIA_R04.md`. Os testes automáticos incluídos continuam a ser sintéticos.
 
-Este módulo é uma pasta autónoma para preparar o requisito R04 do MP01. Recebe eventos JSON publicados pelo The Things Stack (TTS) através de MQTT, identifica a aplicação/dispositivo, preserva `received_at`, `f_cnt`, `f_port`, `frm_payload` e `decoded_payload` quando disponíveis e acrescenta um registo por mensagem a um ficheiro JSONL.
+Este módulo implementa o requisito R04 do MP01. Recebe eventos JSON publicados pelo The Things Stack (TTS) através de MQTT, identifica a aplicação/dispositivo, preserva `received_at`, `f_cnt`, `f_port`, `frm_payload` e `decoded_payload` quando disponíveis e acrescenta um registo por mensagem a um ficheiro JSONL.
 
-## Relação com o repositório atual
+## Relação com o resto do repositório
 
-O repositório `lpbancada07` disponível atualmente está identificado no seu README como atividade GL02. O GL02 exclui explicitamente hardware, MQTT, serviços de rede e deduplicação. Por isso:
-
-- colocar esta pasta `r04_mqtt/` na raiz do repositório apenas como **área temporária de preparação**;
-- não colocar estes ficheiros em `gl02_normalizacao/`;
-- não alterar os ficheiros existentes de GL02;
-- quando o repositório global GL01/MP01 estiver disponível, transferir `r04_mqtt/src/observatorio/consumer/` para a estrutura `src/observatorio/consumer/` desse projeto e mover a documentação/testes correspondentes;
-- não afirmar que o módulo temporário na raiz do repositório GL02 é a integração final da arquitetura MP01.
-
-Ver `docs/INTEGRACAO_TEMPORARIA.md`.
+Este módulo vive em `r04_mqtt/`, separado de `gl02_normalizacao/` (normalização GL02, sem rede). Ainda não está ligado ao normalizador: o consumidor só recebe e regista. Se a estrutura do projeto passar a ter `src/` na raiz, `r04_mqtt/src/observatorio/consumer/` pode ser movido para lá sem alterações de código.
 
 ## O que o módulo faz
 
@@ -25,7 +17,7 @@ Ver `docs/INTEGRACAO_TEMPORARIA.md`.
 - Preserva os campos descodificados pelo TTS em `uplink_message.decoded_payload` sem voltar a descodificar o payload binário.
 - Preserva `frm_payload` em Base64 para rastreabilidade.
 - Regista `received_at` apenas quando fornecido pelo TTS e cria `ingested_at` para o instante de receção/processamento pelo consumidor.
-- Regista cada mensagem recebida, sem deduplicação: a política R06 é uma tarefa separada.
+- Regista cada mensagem recebida, incluindo entregas repetidas.
 
 ## Instalação no Raspberry Pi
 
@@ -38,8 +30,6 @@ python -m pip install -r requirements.txt
 cp .env.example .env
 nano .env
 ```
-
-Preencher `.env` com os valores reais da consola TTS. Não partilhar o ficheiro nem o carregar para o GitHub.
 
 ## Executar testes locais
 
@@ -67,14 +57,14 @@ O TTS suporta MQTT 3.1.1 e QoS 0. QoS 0 não garante entrega nem recuperação d
 
 ## Payload Formatter do sensor
 
-Foi incluído em `payload_formatter/HKT_IAQ_1000_original_for_review.js` o ficheiro recebido do utilizador, sem alterações. **Não o publicar automaticamente no TTS sem validação.** O cabeçalho identifica HKT-IAQ-1000, enquanto o MP01 identifica o equipamento da bancada como HKT IAQ-900 O3. A compatibilidade tem de ser confirmada pelo docente/fabricante.
+O formatter foi fornecido pelo docente, que o confirmou como adequado ao sensor. `payload_formatter/HKT_IAQ_1000_original_for_review.js` é o ficheiro original recebido, sem alterações, e o seu cabeçalho identifica HKT-IAQ-1000 (o equipamento da bancada é o HKT IAQ-900 O3). O código efetivamente instalado no TTS deve ser guardado nesta pasta, com a origem indicada.
 
-A análise das questões encontradas está em `docs/ANALISE_PAYLOADER.md`. Até o formatter produzir `decoded_payload`, o consumidor regista que a descodificação está ausente e conserva o Base64; isso, por si só, não demonstra a relação pedida entre os campos descodificados e a observação real.
+As questões técnicas encontradas no formatter estão em `docs/ANALISE_PAYLOADER.md`. O consumidor não descodifica: quando o TTS não envia `decoded_payload`, regista `decode_status = decoded_payload_em_falta` e conserva o Base64.
 
-## Limites em relação ao MP01
+## Âmbito do módulo
 
-Este módulo não implementa R05 (contrato/normalização integral), R06 (idempotência), persistência relacional, Django/API, dashboard ou modelo digital. Não associa gateway a origem física exclusiva; uma transmissão pode ser recebida por mais de um gateway.
+O módulo recebe e regista mensagens num ficheiro JSONL. Não normaliza valores, não persiste numa base de dados e não inclui Django/API, dashboard ou modelo digital. Não associa gateway a origem física exclusiva; uma transmissão pode ser recebida por mais de um gateway.
 
 ## Evidência necessária para considerar R04 demonstrado
 
-Preencher `docs/EVIDENCIA_R04.md` após a execução real. A evidência deve mostrar uma mensagem real recebida por MQTT, o dispositivo, a aplicação, os campos de evento e os campos descodificados devolvidos pelo TTS. Os testes sintéticos não substituem esta demonstração.
+`docs/EVIDENCIA_R04.md` regista a execução real (mensagem recebida por MQTT, dispositivo, aplicação, campos de evento, campos descodificados e limitações observadas). Os registos completos estão em `docs/evidencia/uplinks_reais_completo.jsonl`. Os testes sintéticos não substituem esta demonstração.

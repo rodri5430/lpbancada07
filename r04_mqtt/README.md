@@ -1,12 +1,10 @@
 # R04 — Consumidor MQTT do The Things Stack
 
-> **Estado:** receção real demonstrada na bancada 07 (Raspberry Pi `lp-b07`, 2026-11-17), com uplinks recebidos por MQTT e `decoded_payload` produzido pelo formatter do TTS. Ver `docs/EVIDENCIA_R04.md`. Os testes automáticos incluídos continuam a ser sintéticos.
+> **Estado:** consumidor MQTT implementado, testado com 15 testes automatizados e executado com sucesso no Raspberry Pi da bancada 07, com receção de uplinks reais do dispositivo.
 
-Este módulo implementa o requisito R04 do MP01. Recebe eventos JSON publicados pelo The Things Stack (TTS) através de MQTT, identifica a aplicação/dispositivo, preserva `received_at`, `f_cnt`, `f_port`, `frm_payload` e `decoded_payload` quando disponíveis e acrescenta um registo por mensagem a um ficheiro JSONL.
+Este módulo recebe eventos JSON publicados pelo The Things Stack (TTS) através de MQTT, identifica a aplicação e o dispositivo, preserva os campos de evento e o payload descodificado quando disponível e acrescenta os registos a um ficheiro JSONL.
 
-## Relação com o resto do repositório
-
-Este módulo vive em `r04_mqtt/`, separado de `gl02_normalizacao/` (normalização GL02, sem rede). Ainda não está ligado ao normalizador: o consumidor só recebe e regista. Se a estrutura do projeto passar a ter `src/` na raiz, `r04_mqtt/src/observatorio/consumer/` pode ser movido para lá sem alterações de código.
+A implementação atual demonstra a receção e o registo de mensagens reais. A validação das grandezas físicas, a integração com o normalizador GL02 e a idempotência prevista no R06 permanecem fora do âmbito implementado deste módulo.
 
 ## O que o módulo faz
 
